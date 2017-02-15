@@ -66,6 +66,16 @@ module HipChat
       response.parsed_response
     end
 
+    def get_session
+      response = self.class.get("#{@api.get_session_config[:url]}/#{@token}",
+                                :query => { :auth_token=> @token },
+                                :headers => @api.headers
+      )
+
+      ErrorHandler.response_code_to_exception_for :user, @token, response
+      response.parsed_response
+    end
+
     def user(name)
       HipChat::User.new(@token, { :user_id => name, :api_version => @api_version, :server_url => @options[:server_url] })
     end

@@ -83,6 +83,14 @@ module HipChat
           }
         }[version]
       end
+
+      def get_session_config
+        raise InvalidApiVersion, 'This functionality is not supported in API v1' unless version.eql?('v2')
+        {
+            :url => ('/oauth/token'),
+            :body_format => :to_json,
+        }
+      end
     end
 
     class Room < ApiVersion
