@@ -77,7 +77,7 @@ module HipChat
     end
 
     def group(group_id)
-      response = self.class.get("#{@api.view_group_config[:url]}/#{group_id}",
+      response = self.class.get("#{@api.group_config[:url]}/#{group_id}",
                                 :query => { :auth_token => @token },
                                 :headers => @api.headers
       )
