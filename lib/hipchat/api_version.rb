@@ -91,6 +91,14 @@ module HipChat
             :body_format => :to_json,
         }
       end
+
+      def group_config
+        raise InvalidApiVersion, 'This functionality is not supported in API v1' unless version.eql?('v2')
+        {
+            :url => ('/group'),
+            :body_format => :to_json,
+        }
+      end
     end
 
     class Room < ApiVersion
